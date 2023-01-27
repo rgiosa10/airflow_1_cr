@@ -19,22 +19,26 @@
 
 ## Description
 
-This repo showcases work with Airflow to leverage a DAG for automation of the below steps:
-* Extracts the data from the csv file
-* From the World Happiness Report data, creates a Python dictionary that has the country names as keys, and the overall rank for that country as the value.
-* Generates three JSON files with a randomly selected country and its rank from the dictionary.
-* Then uses the three choices to create three Python operator tasks that run simultaneously. It leverages a python_callable to call a function that prints a string using the country name and its happiness ranking in a sentence.
+For this project, I made a simple DAG that a user can run on the Airflow graphical interface. It uses Bash to echo a user's name, save the echoed value as a text file, then uses Python to read and print the value in that file. Then, it runs three simultaneous tasks that each print a different random value from a list. The DAG finishes with an empty operator.
 
 #### DAG Structure:
-<img src="/Users/Ruben/Desktop/airflow-project-one/imgs/airflow_dag.png" alt="DAG diagram" width="640"/>
+<img src="imgs/dag.png" alt="DAG diagram" width="640"/>
 
-Successful logs of print statements for each `PythonOperator()`:
+Successful logs of each of the tasks:
 
-<img src="/Users/Ruben/Desktop/airflow-project-one/imgs/first.png" alt="DAG diagram" width="640"/>
+<img src="imgs/task_1.png" alt="task_1" width="640"/>
 
-<img src="/Users/Ruben/Desktop/airflow-project-one/imgs/second.png" alt="DAG diagram" width="640"/>
+<img src="imgs/task_2.png" alt="task_2" width="640"/>
 
-<img src="/Users/Ruben/Desktop/airflow-project-one/imgs/third.png" alt="DAG diagram" width="640"/>
+<img src="imgs/task_3.png" alt="task_3" width="640"/>
+
+<img src="imgs/task_4.png" alt="task_4" width="640"/>
+
+<img src="imgs/task_5.png" alt="task_5" width="640"/>
+
+<img src="imgs/task_6.png" alt="task_6" width="640"/>
+
+<img src="imgs/task_7.png" alt="task_7" width="640"/>
 
 <br>
 

@@ -26,7 +26,17 @@ def print_hello():
         contents = txt_file.read()
         print(f"Hello, welcome to this projected completed by {contents}")
 
+def first_choice():
+    choice = random.choice(APPLES)
+    print(f"{choice} was chosen")
 
+def second_choice():
+    choice = random.choice(APPLES)
+    print(f"{choice} was chosen")
+
+def third_choice():
+    choice = random.choice(APPLES)
+    print(f"{choice} was chosen")
 
 
 with DAG(
@@ -49,6 +59,23 @@ with DAG(
         bash_command= 'echo "picking three random apples"'
     )
 
-    
+    first_choice_task = PythonOperator(
+        task_id = 'first_choice',
+        python_callable= first_choice,
+    )
 
-    echo_to_file_task >> greeting_task >> echo_task 
+    second_choice_task = PythonOperator(
+        task_id = 'second_choice',
+        python_callable= second_choice,
+    )
+
+    third_choice_task = PythonOperator(
+        task_id = 'third_choice',
+        python_callable= third_choice,
+    )
+
+    last_task = DummyOperator(
+        task_id = 'last_task'
+    )
+
+    echo_to_file_task >> greeting_task >> echo_task >> [first_choice_task, second_choice_task, third_choice_task] >> last_task

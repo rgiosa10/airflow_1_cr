@@ -2,13 +2,14 @@
 
 #### By [Ruben Giosa](https://www.linkedin.com/in/rubengiosa/)
 
-#### This repo showcases work with Airflow to leverage a DAG for automation
+#### This repo showcases the creation of a simple DAG to work with Airflow, leveraging setup files to streamline setup process as well, basic commands to properly run Airflow leveraging Docker.
 
 <br>
 
 ## Technologies Used
 
 * Airflow
+* Docker
 * Python
 * Git
 * Markdown
@@ -19,12 +20,12 @@
 
 ## Description
 
-For this project, I made a simple DAG that a user can run on the Airflow graphical interface. It uses Bash to echo a user's name, save the echoed value as a text file, then uses Python to read and print the value in that file. Then, it runs three simultaneous tasks that each print a different random value from a list. The DAG finishes with an empty operator.
+For this project, I made a very simple DAG that a user can run on the Airflow graphical interface. It uses Bash to echo a user's name, save the echoed value as a text file, then uses Python to read and print the value in that file. Then, it runs three simultaneous tasks that each print a different random value from a list. The DAG finishes with an empty operator.
 
 #### DAG Structure:
 <img src="imgs/dag.png" alt="DAG diagram" width="640"/>
 
-Successful logs of each of the tasks:
+Logs of each of the successful tasks:
 
 <img src="imgs/task_1.png" alt="task_1" width="640"/>
 
@@ -38,7 +39,7 @@ Successful logs of each of the tasks:
 
 <img src="imgs/task_6.png" alt="task_6" width="640"/>
 
-<img src="imgs/task_7.png" alt="task_7" width="640"/>
+Task 7 is a `DummyOperator` to showcase the use of the operator for this DAG (Note: this task is evaluated by the scheduler but never processed by the executor) 
 
 <br>
 

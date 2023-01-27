@@ -31,4 +31,13 @@ with DAG(
     description='ETL DAG for world_happiness_index csv to json', # a description of our DAG
     default_args=default_args, # pass in the default args.
 ) as dag:
+    echo_to_file_task = BashOperator(
+        task_id= "echo_to_file",
+        bash_command='echo "Ruben Giosa" >> /opt/airflow/dags/code_review.txt',
+    )
+
+    greeting_task = PythonOperator(
+        task_id = 'greeting'
+    )
+
     

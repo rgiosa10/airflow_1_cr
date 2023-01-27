@@ -92,7 +92,7 @@ Successful logs of print statements for each `PythonOperator()`:
   ./airflow_setup.sh
   ```
     
-    The contents of the `airflow_setup.sh` include the below to install 1) creating ./logs and ./plugins directories in the dsa-airflow directory 2) download the `docker_compose.yaml` 3) create the .env and 4) initialize airflow
+    The contents of the `airflow_setup.sh` include the below to 1) creating ./logs and ./plugins directories in the dsa-airflow directory 2) download the `docker_compose.yaml` 3) create the .env and 4) initialize airflow
     
 ```bash
     #!/bin/bash
@@ -108,6 +108,16 @@ Successful logs of print statements for each `PythonOperator()`:
     # initialize airflow 
     docker-compose up airflow-init
 ```
+
+* Once setups have been completed, you will want to be using the below commands to manage airflow and docker:
+    1. Once airflow has been initialized, use the below command line tool that allows you to initialize the rest of the Docker containers:
+        ```bash
+        docker-compose up
+        ```
+    2. In order to shut down hit `^Ctrl C` to stop Airflow on the local host and then run the below to stop the containers and remove old volumes:
+        ```bash
+        docker-compose down --volumes --remove-orphans 
+        ```
 
 </br>
 

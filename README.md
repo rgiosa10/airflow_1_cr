@@ -2,7 +2,7 @@
 
 #### By [Ruben Giosa](https://www.linkedin.com/in/rubengiosa/)
 
-#### This repo showcases the creation of a simple DAG to work with Airflow, leveraging setup files to streamline setup process as well, basic commands to properly run Airflow leveraging Docker.
+#### This repo showcases the creation of a simple DAG working with Airflow.
 
 <br>
 
@@ -20,7 +20,7 @@
 
 ## Description
 
-For this project, I made a very simple DAG that a user can run on the Airflow graphical interface. It uses Bash to echo a user's name, save the echoed value as a text file, then uses Python to read and print the value in that file. Then, it runs three simultaneous tasks that each print a different random value from a list. The DAG finishes with an empty operator.
+For this project, I made a very simple DAG (`code_review.py`) that a user can run on the Airflow graphical interface. It uses Bash to echo a user's name, save the echoed value as a text file (`code_review.txt`), then uses Python to read and print the value in that file. Then, it runs three simultaneous tasks that each print a different random value from a list. The DAG finishes with an empty operator.
 
 #### DAG Structure:
 <img src="imgs/dag.png" alt="DAG diagram" width="640"/>

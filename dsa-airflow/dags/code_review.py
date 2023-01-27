@@ -22,9 +22,9 @@ default_args = {
 }
 
 def print_hello():
-    with open('/opt/airflow/dags/code_review.txt') as txt_file:
-        print(f"Hello, welcome to this projected completed by {txt_file}")
-
+    with open('/opt/airflow/dags/code_review.txt', 'r') as txt_file:
+        contents = txt_file.read()
+        print(f"Hello, welcome to this projected completed by {contents}")
 
 
 
@@ -50,3 +50,5 @@ with DAG(
     )
 
     
+
+    echo_to_file_task >> greeting_task >> echo_task 

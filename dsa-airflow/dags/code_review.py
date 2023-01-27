@@ -21,6 +21,9 @@ default_args = {
     'retry_delay': timedelta(seconds=15), # How long to wait before retrying
 }
 
+def print_hello():
+    with open('/opt/airflow/dags/code_review.txt') as txt_file:
+        print(f"Hello, welcome to this projected completed by {txt_file}")
 
 
 
@@ -37,7 +40,13 @@ with DAG(
     )
 
     greeting_task = PythonOperator(
-        task_id = 'greeting'
+        task_id = 'greeting',
+        python_callable= print_hello,
+    )
+
+    echo_task = BashOperator(
+        task_id= "echo_three_random_apples",
+        bash_command= 'echo "picking three random apples"'
     )
 
     

@@ -10,17 +10,10 @@
 
 * Airflow
 * Python
-* Pandas
 * Git
 * Markdown
 * `.gitignore`
 * `requirements.txt`
-  
-</br>
-
-## Datasets Used
-
-1. [World Happiness Report](https://www.kaggle.com/datasets/unsdsn/world-happiness?select=2019.csv)
 
 </br>
 
@@ -36,6 +29,7 @@ This repo showcases work with Airflow to leverage a DAG for automation of the be
 <img src="/Users/Ruben/Desktop/airflow-project-one/imgs/airflow_dag.png" alt="DAG diagram" width="640"/>
 
 Successful logs of print statements for each `PythonOperator()`:
+
 <img src="/Users/Ruben/Desktop/airflow-project-one/imgs/first.png" alt="DAG diagram" width="640"/>
 
 <img src="/Users/Ruben/Desktop/airflow-project-one/imgs/second.png" alt="DAG diagram" width="640"/>
@@ -46,18 +40,18 @@ Successful logs of print statements for each `PythonOperator()`:
 
 ## Setup/Installation Requirements
 
-* Go to https://github.com/rgiosa10/airflow-project-one.git to find the specific repository for this website.
+* Go to https://github.com/rgiosa10/airflow_1_cr.git to find the specific repository for this website.
 * Then open your terminal. I recommend going to your Desktop directory:
     ```bash
     cd Desktop
     ```
 * Then clone the repository by inputting: 
   ```bash
-  git clone https://github.com/rgiosa10/airflow-project-one.git
+  git clone https://github.com/rgiosa10/airflow_1_cr.git
   ```
 * Go to the new directory or open the directory folder on your desktop:
   ```bash
-  cd airflow-project-one
+  cd airflow_1_cr
   ```
 * open the directory in VS Code:
   ```bash
@@ -67,10 +61,53 @@ Successful logs of print statements for each `PythonOperator()`:
   ```bash
   ./setup.sh
   ```
+
+    The contents of the `setup.sh` include the below to install 1) relevant version of python 2) create virtual env 3) installing Airflow in virtual env and 4) requirements.txt:
+    ```bash
+    #/bin/bash
+    # this script will setup the environment and install all necessary components 
+
+    # install/upgrade virtualenv
+    python3.7 -m pip install --upgrade virtualenv
+
+    # create and run a python3.7 virtual env
+    python3.7 -m venv venv
+    source venv/bin/activate
+    # install/upgrade pip
+    python3.7 -m pip install --upgrade pip setuptools wheel
+
+    # install Airflow in the virtual env
+    AIRFLOW_VERSION=2.3.2
+    PYTHON_VERSION=3.7
+    CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+    pip install "apache-airflow[async,postgres,google]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+    # pip install pypi packages
+    pip install -r requirements.txt
+    ```
+
 * Then run the airflow setup file:
+
   ```bash
   ./airflow_setup.sh
   ```
+    
+    The contents of the `airflow_setup.sh` include the below to install 1) creating ./logs and ./plugins directories in the dsa-airflow directory 2) download the `docker_compose.yaml` 3) create the .env and 4) initialize airflow
+    
+```bash
+    #!/bin/bash
+    # Move into the dsa-airflow directory and make subdirs
+    cd dsa-airflow
+    mkdir ./logs ./plugins
+
+    # download the docker-compose.yaml and set the .env
+    curl -LfO 'https://airflow.apache.org/docs/apache-airflow/stable/docker-compose.yaml'
+    echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+
+
+    # initialize airflow 
+    docker-compose up airflow-init
+```
 
 </br>
 

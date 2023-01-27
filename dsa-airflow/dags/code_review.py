@@ -14,18 +14,13 @@ import random
 
 APPLES = ["pink lady", "jazz", "orange pippin", "granny smith", "red delicious", "gala", "honeycrisp", "mcintosh", "fuji"]
 
-default_args = {
-    'start_date': days_ago(1), # The start date for DAG running
-    'schedule_interval': timedelta(days=1), # How often the DAG will run
-    'retries': 1, # How many times to retry in case of failure
-    'retry_delay': timedelta(seconds=15), # How long to wait before retrying
-}
-
+# Prints a welcome statement using the user name
 def print_hello():
     with open('/opt/airflow/dags/code_review.txt', 'r') as txt_file:
         contents = txt_file.read()
         print(f"Hello, welcome to this projected completed by {contents}")
 
+# 3 functions that run simultaneously and randomly select an apple from APPLE list
 def first_choice():
     choice = random.choice(APPLES)
     print(f"{choice} was chosen")
@@ -38,10 +33,18 @@ def third_choice():
     choice = random.choice(APPLES)
     print(f"{choice} was chosen")
 
+# Set default args for DAG
+default_args = {
+    'start_date': days_ago(1), # The start date for DAG running
+    'schedule_interval': timedelta(days=1), # How often the DAG will run
+    'retries': 1, # How many times to retry in case of failure
+    'retry_delay': timedelta(seconds=15), # How long to wait before retrying
+}
 
+# Create DAG
 with DAG(
     'code_review', # a unique name for our DAG
-    description='ETL DAG for world_happiness_index csv to json', # a description of our DAG
+    description='simple DAG with bash, python and dummy tasks', # a description of our DAG
     default_args=default_args, # pass in the default args.
 ) as dag:
     echo_to_file_task = BashOperator(
@@ -78,4 +81,5 @@ with DAG(
         task_id = 'last_task'
     )
 
+    # Sets the task order 
     echo_to_file_task >> greeting_task >> echo_task >> [first_choice_task, second_choice_task, third_choice_task] >> last_task
